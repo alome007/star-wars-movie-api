@@ -43,6 +43,7 @@ const createComment = async (req, res, connection) => {
       "INSERT INTO comments SET ?",
       commentData,
       function (error, results, fields) {
+        connection.release();
         if (!error) {
           res.status(200).send({
             status: "success",
@@ -69,6 +70,7 @@ const fetchData = (req, res, connection) => {
     connection.query(
       "SELECT * from comments ORDER BY date DESC",
       (err, rows, field) => {
+        connection.release();
         if (!err) {
           res.status(200).send({
             status: "success",
