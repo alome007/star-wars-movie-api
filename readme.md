@@ -22,6 +22,4 @@ npm install
 npm run start
 ```
 
-## Git Clone
-
 The documentation for this project can be accessed [here](https://documenter.getpostman.com/view/9496344/UVC5En1z)
