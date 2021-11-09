@@ -15,6 +15,7 @@ https://github.com/Alome007/star-wars-movie-api
 
 ```
 cd star-wars-movie-api
+
 npm install
 ```
 

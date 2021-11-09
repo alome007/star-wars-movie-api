@@ -8,6 +8,9 @@ const fetchMovies = async (req, res) => {
   try {
     var connection = mysql.createConnection(config.config);
     connectToDB(connection);
+    setInterval(function () {
+      connection.query("SELECT 1");
+    }, 5000);
     const films = await axios.get(`${base_url}/films`);
     const filmsData = films.data.results;
     let data = await filmsData.map((v) => ({

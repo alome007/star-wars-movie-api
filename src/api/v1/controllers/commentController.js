@@ -6,12 +6,18 @@ const fetchComments = async (req, res) => {
   var connection = mysql.createConnection(config.config);
   connectToDB(connection);
   fetchData(req, res, connection);
+  setInterval(function () {
+    connection.query("SELECT 1");
+  }, 5000);
 };
 
 const addComment = async (req, res) => {
   var connection = mysql.createConnection(config.config);
   connectToDB(connection);
   createComment(req, res, connection);
+  setInterval(function () {
+    connection.query("SELECT 1");
+  }, 5000);
 };
 
 const connectToDB = (connection) => {
