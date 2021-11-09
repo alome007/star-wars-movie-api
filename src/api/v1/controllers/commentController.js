@@ -6,18 +6,12 @@ const fetchComments = async (req, res) => {
   var connection = mysql.createConnection(config.config);
   connectToDB(connection);
   fetchData(req, res, connection);
-  setInterval(function () {
-    connection.query("SELECT 1");
-  }, 5000);
 };
 
 const addComment = async (req, res) => {
   var connection = mysql.createConnection(config.config);
   connectToDB(connection);
   createComment(req, res, connection);
-  setInterval(function () {
-    connection.query("SELECT 1");
-  }, 5000);
 };
 
 const connectToDB = (connection) => {
@@ -43,7 +37,7 @@ const createComment = async (req, res, connection) => {
       "INSERT INTO comments SET ?",
       commentData,
       function (error, results, fields) {
-        connection.release();
+        connection.end();
         if (!error) {
           res.status(200).send({
             status: "success",
@@ -70,8 +64,8 @@ const fetchData = (req, res, connection) => {
     connection.query(
       "SELECT * from comments ORDER BY date DESC",
       (err, rows, field) => {
-        connection.release();
         if (!err) {
+          connection.end();
           res.status(200).send({
             status: "success",
             message: "Comments fetched successfully",
